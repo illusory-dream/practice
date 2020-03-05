@@ -2,7 +2,7 @@
 #include <utility>
 #include <Windows.h>
 using namespace std;
-//ÅĞ¶ÏÄÄ¸öTreeNode*¶ÔÓ¦µÄint×îĞ¡£¬¼´ÕÒ³öµ±Ç°È¨Öµ×îĞ¡µÄÊ÷£¬ÓÃÒÔÉú³É¹ş·òÂüÊ÷
+//åˆ¤æ–­å“ªä¸ªTreeNode*å¯¹åº”çš„intæœ€å°ï¼Œå³æ‰¾å‡ºå½“å‰æƒå€¼æœ€å°çš„æ ‘ï¼Œç”¨äºç”Ÿæˆå“ˆå¤«æ›¼æ ‘
 unordered_map<TreeNode*, int>::const_iterator myMin(const unordered_map<TreeNode*, int>& count)
 {
 	auto min = count.cbegin();
@@ -15,7 +15,7 @@ unordered_map<TreeNode*, int>::const_iterator myMin(const unordered_map<TreeNode
 	}
 	return min;
 }
-//Éú³É¹ş·òÂüÊ÷
+//ç”Ÿæˆå“ˆå¤«æ›¼æ ‘
 TreeNode* huffman(const vector<char>& vec)
 {
 	unordered_map<char, int> num;
@@ -45,7 +45,7 @@ TreeNode* huffman(const vector<char>& vec)
 	}
 	return count.cbegin()->first;
 }
-//µİ¹éÏÈĞò±éÀú£¬Éú³É±àÂë×ÖµäµÄÖ÷Òª²½Öè
+//é€’å½’å…ˆåºéå†ï¼Œç”Ÿæˆç¼–ç å­—å…¸çš„ä¸»è¦æ­¥éª¤
 void preOrder(TreeNode* tn, vector<char> code, unordered_map<char, vector<char>> &codLst)
 {
 	if (tn)
@@ -63,7 +63,7 @@ void preOrder(TreeNode* tn, vector<char> code, unordered_map<char, vector<char>>
 		delete tn;
 	}
 }
-//¹ş·òÂüÊ÷->±àÂë×Öµä
+//å“ˆå¤«æ›¼æ ‘->ç¼–ç å­—å…¸
 unordered_map<char, vector<char>> treeToCode(TreeNode* tn)
 {
 	unordered_map<char, vector<char>> ret;
@@ -109,7 +109,7 @@ void coding(istream& is, ostream& os, const unordered_map<char, vector<char>>& l
 				++sz;
 				if (sz >= 1024 && 0 == sz % 1024)
 				{
-					cout << "\r\t\t\tÒÑ´¦Àí£º" << (sz / 1024) << "KB";
+					cout << "\r\t\t\tå·²å¤„ç†ï¼š" << (sz / 1024) << "KB";
 				}
 			}
 		}
@@ -151,7 +151,7 @@ void decoding(istream& is, ostream& os, const unordered_map<char, vector<char>>&
 		++sz;
 		if (sz >= 1024 && 0 == sz % 1024)
 		{
-			cout << "\r\t\t\tÒÑ´¦Àí£º" << (sz / 1024) << "KB";
+			cout << "\r\t\t\tå·²å¤„ç†ï¼š" << (sz / 1024) << "KB";
 		}
 	}
 }
@@ -184,9 +184,9 @@ unordered_map<char, vector<char>> loadDict(istream& is)
 
 void tips()
 {
-	cout << "-c \"Ô´ÎÄ¼ş\" \"Ä¿±êÎÄ¼ş\" \"×ÖµäÎÄ¼şÒª´æ·ÅµÄÎ»ÖÃ\"\t×÷ÓÃ£º±àÂëÎÄ¼ş" << endl;
-	cout << "-d \"Ô´ÎÄ¼ş\" \"Ä¿±êÎÄ¼ş\" \"×ÖµäÎÄ¼ş\"\t×÷ÓÃ£º½âÂëÎÄ¼ş" << endl;
-	cout << "-e ÍË³ö" << endl;
+	cout << "-c \"æºæ–‡ä»¶\" \"ç›®æ ‡æ–‡ä»¶\" \"å­—å…¸æ–‡ä»¶è¦å­˜æ”¾çš„ä½ç½®\"\tä½œç”¨ï¼šç¼–ç æ–‡ä»¶" << endl;
+	cout << "-d \"æºæ–‡ä»¶\" \"ç›®æ ‡æ–‡ä»¶\" \"å­—å…¸æ–‡ä»¶\"\tä½œç”¨ï¼šè§£ç æ–‡ä»¶" << endl;
+	cout << "-e é€€å‡º" << endl;
 	cout << "for example: -c srce.txt dest.txt dict.txt" << endl;
 }
 
@@ -194,18 +194,18 @@ void userCoding(const std::string& srce, const std::string& dest, const std::str
 {
 	long long t = GetTickCount64();
 	ifstream huffmanSrce(srce, ios::binary);
-	cout << "ÕıÔÚÉú³É±àÂë...";
+	cout << "æ­£åœ¨ç”Ÿæˆç¼–ç ...";
 	auto lst = init(huffmanSrce);
-	cout << "\t\tÍê³É--ÓÃÊ±:" << (GetTickCount64() - t) << "ms" << endl; t = GetTickCount64();
+	cout << "\t\tå®Œæˆ--ç”¨æ—¶:" << (GetTickCount64() - t) << "ms" << endl; t = GetTickCount64();
 	ifstream ifs(srce, ios::binary);
 	ofstream ofs(dest, ios::binary);
-	cout << "ÕıÔÚ½øĞĞ±àÂë..." << endl;
+	cout << "æ­£åœ¨è¿›è¡Œç¼–ç ..." << endl;
 	coding(ifs, ofs, lst);
-	cout << "\r\t\t\tÍê³É--ÓÃÊ±:" << (GetTickCount64() - t) << "ms" << endl; t = GetTickCount64();
+	cout << "\r\t\t\tå®Œæˆ--ç”¨æ—¶:" << (GetTickCount64() - t) << "ms" << endl; t = GetTickCount64();
 	ofstream outDict(dict);
-	cout << "ÕıÔÚ´òÓ¡±àÂë×Öµä...";
+	cout << "æ­£åœ¨æ‰“å°ç¼–ç å­—å…¸...";
 	saveDict(outDict, lst);
-	cout << "\tÍê³É--ÓÃÊ±:" << (GetTickCount64() - t) << "ms" << endl; t = GetTickCount64();
+	cout << "\tå®Œæˆ--ç”¨æ—¶:" << (GetTickCount64() - t) << "ms" << endl; t = GetTickCount64();
 	huffmanSrce.close(); ifs.close(); ofs.close(); outDict.close();
 }
 
@@ -213,17 +213,17 @@ void userDecoding(const std::string& srce, const std::string& dest, const std::s
 {
 	long long t = GetTickCount64();
 	ifstream inDict(dict);
-	cout << "ÕıÔÚ¶ÁÈ¡±àÂë×Öµä...";
+	cout << "æ­£åœ¨è¯»å–ç¼–ç å­—å…¸...";
 	auto lst = loadDict(inDict);
-	cout << "\tÍê³É--ÓÃÊ±:" << (GetTickCount64() - t) << "ms" << endl; t = GetTickCount64();
+	cout << "\tå®Œæˆ--ç”¨æ—¶:" << (GetTickCount64() - t) << "ms" << endl; t = GetTickCount64();
 	ifstream ifs(srce, ios::binary);
 	ofstream ofs(dest, ios::binary);
-	cout << "ÕıÔÚ½âÂë..." << endl;
+	cout << "æ­£åœ¨è§£ç ..." << endl;
 	decoding(ifs, ofs, lst);
-	cout << "\r\t\t\tÍê³É--ÓÃÊ±:" << (GetTickCount64() - t) << "ms" << endl;
+	cout << "\r\t\t\tå®Œæˆ--ç”¨æ—¶:" << (GetTickCount64() - t) << "ms" << endl;
 	inDict.close(); ifs.close(); ofs.close();
 }
-//ÒÔÕıÈ·µÄ¸ñÊ½¶ÁÈëÎÄ¼şÃû
+//ä»¥æ­£ç¡®çš„æ ¼å¼è¯»å…¥æ–‡ä»¶å
 void loadFilename(istream& is, string& str)
 {
 	is >> str;
